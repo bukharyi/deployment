@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     servis: clipapp
-  name: 1-clipapp
+  name: clipapp
   namespace: clip-mint
 spec:
   replicas: 1
