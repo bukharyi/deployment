@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mintkb 
+  namespace: clip-mint
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        servis: knowledge-base 
+    spec:
+      containers:
+      - name: mintkb
+        image: mifrepo.mimos.my:443/mi-clip_mi-int/mint.kb:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 10035
+            protocol: TCP
+        env:
+        - name: AGRAPH_USER
+          value: bukhary
+        - name: AGRAPH_PASSWORD
+          value: bukhary
+      imagePullSecrets:
+        - name: mifrepo

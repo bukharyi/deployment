@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: drupal
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        servis: https
+    spec:
+      containers:
+      - name: drupal
+        image: docker.io/reload/drupal-apache-ssl 
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
+

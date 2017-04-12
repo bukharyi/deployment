@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: app 
+  namespace: mint2
+  labels:
+    servis: app
+spec:
+  replicas: 1
+  selector:
+      servis: app
+  template:
+    metadata:
+      labels:
+        servis: app
+      annotations:
+    spec:
+      containers:
+      - name: app 
+        image: mifrepo.mimos.my:443/mi-intelligence/mint.app
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: 500m
+            memory: 2100Mi
+          requests:
+            cpu: 500m
+            memory: 2100Mi
+        ports:
+        - containerPort: 8080
+        env:
+        - name: MINT_DB_IP
+          value: db.mint2.svc.cluster.local
+        - name: MINT_DB_USER
+          value: root
+        - name: MINT_DB_PASS
+          value: bukhary
+        - name: MINT_ENG_IP
+          value: "10.1.71.156"
+        - name: MINT_ENG_PORT
+          value: "31770"

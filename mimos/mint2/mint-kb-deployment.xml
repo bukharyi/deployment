@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kb 
+  namespace: mint2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        servis: knowledge-base 
+    spec:
+      containers:
+      - name: kb
+        image: mifrepo.mimos.my:443/mi-intelligence/mint.kb
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 10035
+            protocol: TCP
+        env:
+        - name: AGRAPH_USER
+          value: bukhary
+        - name: AGRAPH_PASSWORD
+          value: bukhary

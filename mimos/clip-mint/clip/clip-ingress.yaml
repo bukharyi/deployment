@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: clip-ingress
+  namespace: clip-mint
+spec:
+  rules:
+  - host: clipapp.focus.bukhary.my
+    http:
+      paths:
+      - backend:
+          serviceName: clipapp
+          servicePort: 80
+        path: /

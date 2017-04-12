@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mint-ingress
+  namespace: clip-mint
+spec:
+  rules:
+  - host: mintapp.focus.bukhary.my 
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: mintapp
+          servicePort: 8080
+  - host: minteng.focus.bukhary.my
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: minteng
+          servicePort: 8080

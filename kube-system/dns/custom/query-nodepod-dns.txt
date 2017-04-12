@@ -1,0 +1,2 @@
+nslookup kube-dns.kube-system.svc.cluster.local 10.1.71.156 -port=30569
+

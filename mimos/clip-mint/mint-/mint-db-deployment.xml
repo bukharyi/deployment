@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mintdb 
+  namespace: clip-mint
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        servis: mintdatabase
+    spec:
+      containers:
+      - name: db
+        image: mifrepo.mimos.my:443/mi-clip_mi-int/mint.db:latest 
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3306
+            protocol: TCP
+        env:
+        - name: MYSQL_ROOT_PASSWORD 
+          value: bukhary
+      imagePullSecrets:
+        - name: mifrepo 

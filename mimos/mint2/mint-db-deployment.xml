@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: db 
+  namespace: mint2
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        servis: database
+    spec:
+      containers:
+      - name: db
+        image: mifrepo.mimos.my:443/mi-intelligence/mint.db
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3306
+            protocol: TCP
+        env:
+        - name: MYSQL_ROOT_PASSWORD 
+          value: bukhary

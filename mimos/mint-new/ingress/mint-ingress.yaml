@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mint-ingress
+  namespace: mint
+spec:
+  rules:
+  - host: mint.focus.bukhary.my 
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: app
+          servicePort: 8080
+  - host: eng.mint.focus.bukhary.my
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: engine
+          servicePort: 8080

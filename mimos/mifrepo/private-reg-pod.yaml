@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: private-reg2
+spec:
+  containers:
+    - name: private-reg-container
+      image: mifrepo.mimos.my:443/mi-clip_mi-int/miclip.db:latest
+      imagePullPolicy: Always
+  imagePullSecrets:
+    - name: https
