@@ -5,10 +5,10 @@ metadata:
   namespace: kube-system
 spec:
   rules:
-  - host: traefik-ui.local
+  - host: lb.focus.bukhary.my
     http:
       paths:
-      - path: /saya
+      - path: /
         backend:
           serviceName: traefik-web-ui
           servicePort: 80
