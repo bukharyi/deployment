@@ -11,14 +11,14 @@ spec:
         backend:
           serviceName: stilton
           servicePort: http
-  - host: cheddar.local
+  - host: cheedar.focus.bukhary.my 
     http:
       paths:
       - path: /
         backend:
           serviceName: cheddar
           servicePort: http
-  - host: wensleydale.local
+  - host: wensleydale.focus.bukhary.my
     http:
       paths:
       - path: /
