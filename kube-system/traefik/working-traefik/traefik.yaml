@@ -6,7 +6,7 @@ metadata:
   labels:
     k8s-app: traefik-ingress-lb
 spec:
-  replicas: 5
+  replicas: 3 
   selector:
     matchLabels:
       k8s-app: traefik-ingress-lb

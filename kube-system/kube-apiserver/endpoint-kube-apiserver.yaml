@@ -1,0 +1,30 @@
+  kind: "Endpoints"
+  metadata:
+    name: "external-kube-apiserver-service" 
+    namespace: "kube-system"
+  subsets: 
+    -
+      addresses:
+        -
+          ip: "10.1.70.132"
+      ports:
+        -
+          port: 8080
+          name: "tcp8080"
+    -
+      addresses:
+        -
+          ip: "10.1.70.133"
+      ports:
+        -
+          port: 8080
+          name: "tcp8080"
+    -
+      addresses:
+        -
+          ip: "10.1.70.134"
+      ports:
+        -
+          port: 8080
+          name: "tcp8080"
+

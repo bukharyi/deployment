@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: kube-apiserver 
+  namespace: kube-system
+spec:
+  rules:
+  - host: kube-apiserver.focus.bukhary.my
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: external-kube-apiserver-service
+          servicePort: 8080

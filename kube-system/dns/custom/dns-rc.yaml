@@ -8,7 +8,7 @@ metadata:
       version: v20
       kubernetes.io/cluster-service: "true"
 spec:
-  replicas: 5
+  replicas: 1
   selector:
      k8s-app: kube-dns
      version: v20
@@ -31,9 +31,9 @@ spec:
             cpu: 10m
             memory: 50Mi
         args:
-        - --cmd=nslookup kubernetes.default.svc.cluster.local 127.0.0.1 >/dev/null
+        - --cmd=nslookup kubernetes.default.svc.focus.local 127.0.0.1 >/dev/null
         - --url=/healthz-dnsmasq
-        - --cmd=nslookup kubernetes.default.svc.cluster.local 127.0.0.1:10053 >/dev/null
+        - --cmd=nslookup kubernetes.default.svc.focus.local 127.0.0.1:10053 >/dev/null
         - --url=/healthz-kubedns
         - --port=8080
         - --quiet
@@ -68,7 +68,7 @@ spec:
           initialDelaySeconds: 3
           timeoutSeconds: 5
         args:
-        - --domain=cluster.local.
+        - --domain=focus.local.
         - --dns-port=10053
         ports:
         - containerPort: 10053
