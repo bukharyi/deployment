@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ws 
+  namespace: fssm
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        service: ws
+    spec:
+      containers:
+      - name: ws
+        image: mifrepo.mimos.my:443/fssm/fssm-ws
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8200
+            protocol: TCP
+      imagePullSecrets:
+      - name: mifrepo
+ 

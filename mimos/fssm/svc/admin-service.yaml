@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin
+  namespace: fssm
+spec:
+  type: NodePort
+  ports:
+  - port: 8120
+    targetPort: 8120
+  selector:
+    service: admin

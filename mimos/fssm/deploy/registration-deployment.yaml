@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: registration 
+  namespace: fssm
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        service: registration
+    spec:
+      containers:
+      - name: registration
+        image: mifrepo.mimos.my:443/fssm/fssm-registration
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8110
+            protocol: TCP
+        env:
+        - name: MYSQL_DB_HOSTPORT
+          value: 10.1.70.189:3306
+        - name: MYSQL_DB_NAME
+          value: fssm_registration
+        - name: MYSQL_DB_USER
+          value: testuser
+        - name: MYSQL_DB_PASS
+          value: testuser
+        - name: REGISTRATION_ACTIVATION_LINK
+          value: "https://202.45.139.138/uap/register/password.jsp"
+        - name: REGISTRATION_DASHBOARD_LINK
+          value: "https://10.1.64.21/fssm/app/portal"
+        - name: SOLR_HOSTPORT
+          value: "http://solr:8983/solr"
+      imagePullSecrets:
+      - name: mifrepo
+
+

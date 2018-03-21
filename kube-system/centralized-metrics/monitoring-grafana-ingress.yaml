@@ -1,14 +1,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: traefik-web-ui
+  name: grafana-ingress 
   namespace: kube-system
 spec:
   rules:
-  - host: lb.test.my
+  - host: grafana.focus.bukhary.my
     http:
       paths:
       - path: /
         backend:
-          serviceName: traefik-web-ui
+          serviceName: monitoring-grafana
           servicePort: 80
