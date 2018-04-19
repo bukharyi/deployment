@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ws 
+  namespace: fssm
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: ws
+    spec:
+      containers:
+      - name: ws
+        image: 10.1.70.189:5000/fssm/fssm-ws:test
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 8200
+            protocol: TCP
+      imagePullSecrets:
+      - name: fssm-repo
+ 

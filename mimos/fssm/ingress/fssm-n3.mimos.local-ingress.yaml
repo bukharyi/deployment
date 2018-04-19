@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fssm-n3-ingress
+  namespace: fssm
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.frontend.passHostHeader: "true"
+    traefik.frontend.rule.type: PathPrefixStrip
+spec:
+  rules:
+  - host: fssm-n3.mimos.local
+    http:
+      paths:
+      - path: /fssm/public
+        backend:
+          serviceName: web
+          servicePort: 8090
+      - path: /
+        backend:
+          serviceName: web
+          servicePort: 8090
+      - path: /fssmapp/app/admin
+        backend:
+          serviceName: admin
+          servicePort: 8120
+      - path: /fssmapp/app/ws
+        backend:
+          serviceName: ws
+          servicePort: 8200
+
+
