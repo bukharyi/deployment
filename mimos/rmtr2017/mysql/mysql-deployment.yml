@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql1
+  namespace: $NAMESPACE 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        servis: mysql
+    spec:
+      containers:
+      - name: mysql
+        env: 
+          - name: MYSQL_ROOT_PASSWORD
+            value: "secret"
+        image: mifrepo.mimos.my:443/rmtr/mysql:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3306
+            protocol: TCP
+      - name: metricbeat
+        env:
+          - name: ES_INDEX
+            value: $NAMESPACE
+          - name: ES_USERNAME
+            value: ""
+          - name: ES_PASSWORD
+            value: ""
+          - name: ES_MODULES
+            value: "mysql"
+        image: mifrepo.mimos.my:443/availabilityassurance/metricbeat
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: mifrepo

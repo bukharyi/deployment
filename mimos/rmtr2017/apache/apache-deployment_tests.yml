@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: apache 
+  namespace: apmetrics
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        servis: http-apache
+        app_name: Application-5
+    spec:
+      containers:
+      - name: apache
+        image: mifrepo.mimos.my:443/rmtr/httpd:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+            protocol: TCP
+          - containerPort: 443
+            protocol: TCP
+      - name: metricbeat
+        env:
+          - name: ES_HOST
+            value: "10.1.81.13:9200"
+          - name: ES_INDEX
+            value: apmetrics
+          - name: ES_USERNAME
+            value: ""
+          - name: ES_PASSWORD
+            value: ""
+          - name: ES_MODULES
+            value: "apache"
+        image: mifrepo.mimos.my:443/availabilityassurance/metricbeat:version2
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: mifrepo

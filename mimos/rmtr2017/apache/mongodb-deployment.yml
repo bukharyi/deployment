@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mongo
+  namespace: $NAMESPACE 
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        servis: mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongo
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 27017
+            protocol: TCP
+      - name: metricbeat
+        env:
+          - name: ES_HOST
+            value: "10.1.81.13:9200"
+          - name: ES_INDEX
+            value: $NAMESPACE
+          - name: ES_USERNAME
+            value: ""
+          - name: ES_PASSWORD
+            value: ""
+          - name: ES_MODULES
+            value: "mongodb"
+        image: mifrepo.mimos.my:443/availabilityassurance/metricbeat:version2
+        imagePullPolicy: Always
+      imagePullSecrets:
+      - name: mifrepo

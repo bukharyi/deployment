@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo 
+  namespace: $NAMESPACE 
+spec:
+  containers:
+  - image: mongo
+    imagePullPolicy: IfNotPresent
+    name: mongo 
+  restartPolicy: Always
