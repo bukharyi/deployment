@@ -1,2 +1,0 @@
-k create secret docker-registry https --docker-server=https://mifrepo.mimos.my:443 --docker-username=admin --docker-password=Pass.1 --docker-email=mifrepo.mimos.my
-https://www.mankier.com/1/kubectl-create-secret-docker-registry

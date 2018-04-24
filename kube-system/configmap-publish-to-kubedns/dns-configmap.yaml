@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kube-dns
+  namespace: kube-system
+data:
+  external: |-
+    10.1.40.3 nizam.miclip.local
+    10.1.40.2 db.miclip.local
+    10.1.11.108 app.miclip.local
+    10.1.31.22 bekas.process
+    10.1.31.31 tpcochis
+    10.1.31.32 tpcochis2
+    10.1.31.33 tpcochis3

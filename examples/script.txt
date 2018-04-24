@@ -1,1 +1,0 @@
-kubectl run centos --image=centos -i --tty
